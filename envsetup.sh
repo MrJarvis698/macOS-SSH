@@ -7,4 +7,5 @@ for i in 10 11 12 13 14 15; do
   tar xJf MacOSX10.$i.sdk.tar.xz
   rm -f MacOSX10.$i.sdk.tar.xz
 done
+brew install openjdk@8
 
