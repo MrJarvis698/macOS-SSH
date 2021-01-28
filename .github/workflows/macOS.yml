@@ -1,4 +1,4 @@
-name: MacOS SSH to GitHub Actions
+name: MacOS SSH
 
 on:
   workflow_dispatch:
@@ -10,6 +10,13 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v2
+    - name: Creating Case-sensitive SPARSE filesystem
+      run: sudo hdiutil create -type SPARSE -fs 'Case-sensitive Journaled HFS+' -size 500g ~/android.dmg.sparseimage
+      run: sudo hdiutil attach ~/android.dmg.sparseimage -mountpoint /Volumes/android
+      run: rm -f /Applications/Xcode.app 2>/dev/null
+      run: sudo xcode-select -s /Applications/Xcode_12.3.app/Contents/Developer
+      run: ln -s /Applications/Xcode_12.3.app /Applications/Xcode.app
+      run: cd /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs
     - name: SSH Keepalive Hack
       run: |
         mkdir -p ~/.ssh
