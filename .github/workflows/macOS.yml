@@ -11,7 +11,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
     - name: Creating Case-sensitive SPARSE filesystem
-      run: sudo hdiutil create -type SPARSE -fs 'Case-sensitive Journaled HFS+' -size 500g ~/android.dmg.sparseimage && sudo hdiutil attach ~/android.dmg.sparseimage -mountpoint /Volumes/android
+      run: source envsetup.sh
     - name: SSH Keepalive Hack
       run: |
         mkdir -p ~/.ssh
